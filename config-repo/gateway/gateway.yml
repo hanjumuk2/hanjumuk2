@@ -25,10 +25,6 @@ spring:
           filters:
             - RewritePath=/products/(?<path>.*), /products/$\{path}
 
-  application:
-    name: gatewayserver
-  profiles:
-    active: default
 
 management:
   endpoints:
