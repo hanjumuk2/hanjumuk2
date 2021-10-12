@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: reviewservice
+          uri: lb://reviewservice
+          predicates:
+            - Path=/products/*/reviews/**
+          filters:
+            - RewritePath=/products/(?<path>.*), /products/$\{path}
+        - id: productservice
+          uri: lb://productservice
+          predicates:
+            - Path=/products/**
+          filters:
+            - RewritePath=/products/(?<path>.*), /products/$\{path}
+
+  application:
+    name: gatewayserver
+  profiles:
+    active: default
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway
