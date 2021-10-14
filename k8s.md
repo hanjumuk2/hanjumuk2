@@ -20,6 +20,7 @@
 #### https://bcho.tistory.com/1267?category=731548
 
 ### 개념
+#### https://coding-start.tistory.com/308
 #### Pod
 #### ReplicaSet
 #### Deployment
